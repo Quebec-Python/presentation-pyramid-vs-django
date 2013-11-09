@@ -10,6 +10,7 @@
 
 # Round 1: Pyramid
 
+    !bash
     $ virtualenv venv
     $ source venv/bin/activate
     $ pip install pyramid
@@ -32,7 +33,11 @@
 
 # Round 2: Pyramid
 
+    !bash
     $ pcreate -s starter pyddit
+    $ # ou
+    $ pcreate -s alchemy pyddit
+    $ # pour installer SQLAlchemy dès le départ
 
 ---
 
