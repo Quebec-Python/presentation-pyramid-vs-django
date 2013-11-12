@@ -4,7 +4,7 @@
 
     $ virtualenv venv
     $ source venv/bin/activate
-    $ pip install landslide
+    $ pip install -r requirements.txt
     $ . generate.sh
 
 Vous pouvez maintenant consulter la présentation en ouvrant le fichier presentation.html avec votre navigateur préféré.
