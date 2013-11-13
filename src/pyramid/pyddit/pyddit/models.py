@@ -47,6 +47,6 @@ Index('Post.hash_url_index', Post.hash_url, unique=True, mysql_length=255)
 class Vote(Base):
     __tablename__ = "votes"
     id = Column(Integer, primary_key=True)
-    post_id = Column(Integer, ForeignKey("post.id"))
-    user_id = Column(Integer, ForeignKey("user.id"))
+    post_id = Column(Integer, ForeignKey("posts.id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
     vote = Column(Integer)
