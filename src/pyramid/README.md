@@ -1,17 +1,16 @@
-# Exemple avec Pyramid
+# Pyddit avec Pyramid
 
-## Installation des dépendances
+## 1. Installation des dépendances
 
     $ virtualenv venv
     $ source venv/bin/activate
     $ pip install -r requirements.txt
 
-## Installation
+## 2. Installation du projet *pyddit*
 
     $ cd pyddit
     $ python setup.py develop
 
-## Démarrer le serveur de développement
+## 3. Démarrer le serveur de développement
 
-    $ cd pyddit
     $ pserve development.ini
