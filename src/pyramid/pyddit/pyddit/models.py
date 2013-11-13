@@ -13,6 +13,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import (
     scoped_session,
     sessionmaker,
+    relationship
     )
 
 from zope.sqlalchemy import ZopeTransactionExtension
@@ -29,7 +30,7 @@ class User(Base):
     password = Column(String(250), nullable=False)
     vote = relationship("Vote", uselist=False)
 
-Index('Users.username_index', Users.username, unique=True, mysql_length=255)
+Index('User.username_index', Users.username, unique=True, mysql_length=255)
 
 class Post(Base):
     __tablename__ = "posts"
@@ -41,7 +42,7 @@ class Post(Base):
     is_link = Column(Boolean)
     votes = relationship("Vote")
 
-Index('Posts.hash_url_index', Posts.hash_url, unique=True, mysql_length=255)
+Index('Post.hash_url_index', Posts.hash_url, unique=True, mysql_length=255)
 
 class Vote(Base):
     __tablename__ = "votes"
