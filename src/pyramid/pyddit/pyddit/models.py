@@ -3,6 +3,9 @@ from sqlalchemy import (
     Index,
     Integer,
     Text,
+    String,
+    Boolean,
+    ForeignKey
     )
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -18,10 +21,31 @@ DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
 
-class MyModel(Base):
-    __tablename__ = 'models'
+class User(Base):
+    __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
-    name = Column(Text)
-    value = Column(Integer)
+    username = Column(String(100), nullable=False)
+    email = Column(String(100), nullable=False)
+    password = Column(String(250), nullable=False)
+    vote = relationship("Vote", uselist=False)
 
-Index('my_index', MyModel.name, unique=True, mysql_length=255)
+Index('Users.username_index', Users.username, unique=True, mysql_length=255)
+
+class Post(Base):
+    __tablename__ = "posts"
+    id = Column(Integer, primary_key=True)
+    title = Column(String(250), nullable=False)
+    text = Column(Text)
+    hash_url = Column(String(255))
+    url = Column(String(250))
+    is_link = Column(Boolean)
+    votes = relationship("Vote")
+
+Index('Posts.hash_url_index', Posts.hash_url, unique=True, mysql_length=255)
+
+class Vote(Base):
+    __tablename__ = "votes"
+    id = Column(Integer, primary_key=True)
+    post_id = Column(Integer, ForeignKey("post.id"))
+    user_id = Column(Integer, ForeignKey("user.id"))
+    vote = Column(Integer)
