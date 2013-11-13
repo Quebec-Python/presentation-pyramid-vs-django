@@ -30,7 +30,7 @@ class User(Base):
     password = Column(String(250), nullable=False)
     vote = relationship("Vote", uselist=False)
 
-Index('User.username_index', Users.username, unique=True, mysql_length=255)
+Index('User.username_index', User.username, unique=True, mysql_length=255)
 
 class Post(Base):
     __tablename__ = "posts"
@@ -42,7 +42,7 @@ class Post(Base):
     is_link = Column(Boolean)
     votes = relationship("Vote")
 
-Index('Post.hash_url_index', Posts.hash_url, unique=True, mysql_length=255)
+Index('Post.hash_url_index', Post.hash_url, unique=True, mysql_length=255)
 
 class Vote(Base):
     __tablename__ = "votes"

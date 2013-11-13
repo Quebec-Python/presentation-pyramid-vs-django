@@ -13,7 +13,9 @@ from pyramid.scripts.common import parse_vars
 
 from ..models import (
     DBSession,
-    MyModel,
+    User,
+    Post,
+    Vote,
     Base,
     )
 

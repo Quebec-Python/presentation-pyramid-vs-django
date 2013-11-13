@@ -8,6 +8,7 @@ from alembic import context
 from paste.deploy import loadapp
 from logging.config import fileConfig
 from sqlalchemy.engine.base import Engine
+from sqlalchemy import engine_from_config, pool
 
 from pyddit.models import Base
 
@@ -22,6 +23,8 @@ except:
     config_file = config.get_main_option('pylons_config_file')
     fileConfig(config_file)
     wsgi_app = loadapp('config:%s' % config_file, relative_to='.')
+
+target_metadata = Base.metadata
 
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
@@ -44,14 +47,12 @@ def run_migrations_offline():
 
 def run_migrations_online():
     """Run migrations in 'online' mode.
-
-    In this scenario we need to create an Engine
-    and associate a connection with the context.
-
     """
-    # specify here how the engine is acquired
-    engine = config.engine
-    # raise NotImplementedError("Please specify engine connectivity here")
+    engine = engine_from_config(
+                config.get_section(config.config_ini_section),
+                prefix='sqlalchemy.',
+                poolclass=pool.NullPool,
+                url=config.get_main_option("sqlalchemy.url"))
 
     if isinstance(engine, Engine):
         connection = engine.connect()
