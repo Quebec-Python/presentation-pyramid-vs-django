@@ -38,5 +38,5 @@ def main(argv=sys.argv):
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
     with transaction.manager:
-        model = MyModel(name='one', value=1)
-        DBSession.add(model)
+        user = User(username='vagrant', email="vagrant@gmail.com", password="vagrant")
+        DBSession.add(user)
