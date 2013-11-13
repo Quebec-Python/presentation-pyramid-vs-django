@@ -14,7 +14,7 @@
 
 # Round 1: la procédure d'installation !
 
-## Pyramid
+## Sous Pyramid
 
     !bash
     $ virtualenv venv
@@ -26,7 +26,7 @@
 
 # Round 1: la procédure d'installation !
 
-## Django
+## Sous Django
 
     !bash
     $ virtualenv venv
@@ -49,9 +49,11 @@
 
     !bash
     $ pcreate -s starter pyddit
-    $ # ou
+
+pour installer SQLAlchemy dès le départ:
+
+    !bash
     $ pcreate -s alchemy pyddit
-    $ # pour installer SQLAlchemy dès le départ
 
 ---
 
@@ -67,13 +69,17 @@ TODO
 
 ---
 
-# Round 3: Models => Pyramid
+# Round 3: Models
+
+## Sous Pyramid
 
 TODO: montrer SQLAlchemy un peu
 
 ---
 
-# Round 3: Models => Django
+# Round 3: Models
+
+## Sous Django
 
 TODO: django orm
 
@@ -83,13 +89,13 @@ TODO: django orm
 
 ---
 
-# Round 4: Migration => Pyramid
+# Sous Pyramid
 
 TODO: Alembic
 
 ---
 
-# Round 4: Migration => Django
+# Sous Django
 
 TODO: South
 
