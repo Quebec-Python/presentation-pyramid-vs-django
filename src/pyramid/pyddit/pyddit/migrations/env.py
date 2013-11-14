@@ -49,10 +49,11 @@ def run_migrations_online():
     """Run migrations in 'online' mode.
     """
     engine = engine_from_config(
-                config.get_section(config.config_ini_section),
-                prefix='sqlalchemy.',
-                poolclass=pool.NullPool,
-                url=config.get_main_option("sqlalchemy.url"))
+        config.get_section(config.config_ini_section),
+        prefix='sqlalchemy.'
+    )
+
+    connection = engine.connect()
 
     if isinstance(engine, Engine):
         connection = engine.connect()
