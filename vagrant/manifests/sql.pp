@@ -1,20 +1,39 @@
 
 class sql {
-
-  exec { "apt-update-repo":
-    command => "/usr/bin/apt-get -y update"
+  class {'mysql::server':
   }
 
-  package {
-    ["mysql-client", "mysql-server", "libmysqlclient-dev"]:
-      ensure => installed,
-      require => Exec['apt-update']
+  mysql_database { 'pyramid-db':
+    ensure => present,
   }
 
-  service { "mysql":
-    ensure    => running,
-    enable    => true,
-    require => Package["mysql-server"],
+  mysql::user { 'pyramid' :
+    ensure => present,
+    require  => Service['mysql'],
+    password => 'pyramid',
+    host     => 'localhost'
   }
 
+  mysql::rights::standard { 'pyramid' :
+    database => 'pyramid-db',
+    user     => 'pyramid',
+    host     => 'localhost',
+  }
+
+  mysql_database { 'django-db':
+    ensure => present,
+  }
+
+  mysql::user { 'django' :
+    ensure => present,
+    require  => Service['mysql'],
+    password => 'django',
+    host     => 'localhost'
+  }
+
+  mysql::rights::standard { 'django' :
+    database => 'django-db',
+    user     => 'django',
+    host     => 'localhost',
+  }
 }
