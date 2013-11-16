@@ -13,10 +13,14 @@ Chacune des commandes suivantes supposent que vous vous trouviez dans le répert
     $ cd pyddit
     $ python setup.py develop
 
-## 3. Démarrer le serveur de développement
+## 3. Initialisation de la base de données
+
+    $ cd pyddit/pyddit
+    $ alembic upgrade head
+
+## 4. Démarrer le serveur de développement
 
     $ cd pyddit
     $ pserve development.ini
 
-## 4. Initialisation de la base de données
-
+Vous pouvez maintenant admirer l'app à l'adresse suivante: [http://localhost:6543](http://localhost:6543)
