@@ -1,0 +1,17 @@
+.pyddit-add-post {
+    margin-top:20px;
+}
+
+.pyddit-posts {}
+
+.pyddit-post {list-style:none;padding-top:30px;}
+.pyddit-post:first-child { padding-top:0; }
+
+.pyddit-vote-cmds {}
+
+.pyddit-vote-cmd,
+.pyddit-score {display:block; text-align:center;}
+
+.pyddit-vote-cmd {font-size:2em;}
+.pyddit-vote-up {}
+.pyddit-vote-down {}
