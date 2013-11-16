@@ -1,6 +1,9 @@
 # Pyddit avec Pyramid
 
-Chacune des commandes suivantes supposent que vous vous trouviez dans le répertoire ```src/pyramid```.
+Chacune des commandes suivantes supposent que vous vous trouviez:
+
+* dans le répertoire ```src/pyramid``` si **vous n'utilisez pas** *Vagrant*
+* dans le répertoire ```opt/pyramid``` si **vous utilisez** *Vagrant*
 
 ## 1. Installation des dépendances
 
