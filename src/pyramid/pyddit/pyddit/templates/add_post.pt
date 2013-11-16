@@ -1,0 +1,13 @@
+<metal:main use-macro="load: base.pt">
+    <div metal:fill-slot="content">
+        <form action="add_post_submit" method="get" accept-charset="utf-8">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Input Label</label>
+                    <input type="text" placeholder="large-12.columns">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</metal:main>

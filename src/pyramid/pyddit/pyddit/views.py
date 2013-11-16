@@ -15,4 +15,8 @@ def index(request):
     except DBAPIError:
         return Response("error !", content_type='text/plain', status_int=500)
 
-    return {'posts': posts}
+    return {'posts': posts, "hide_add_button": False}
+
+@view_config(route_name="add_post", renderer="templates/add_post.pt")
+def add_post(request):
+    return {"hide_add_button": True}
