@@ -1,0 +1,66 @@
+<metal:main use-macro="load: base.pt">
+    <div metal:fill-slot="content">
+
+        <p tal:condition="not: posts">
+            Il n'y a pas encore de liens...
+        </p>
+
+        <ul class="pyddit-posts">
+            <li class="row pyddit-post">
+                <div class="small-1 medium-1 large-1 columns pyddit-vote-cmds">
+                    <a class="pyddit-vote-cmd pyddit-vote-up" href="#" title="">
+                        <i class="fi-arrow-up"></i>
+                    </a>
+                    <strong class="pyddit-score">
+                        1200
+                    </strong>
+                    <a class="pyddit-vote-cmd pyddit-vote-down" href="#" title="">
+                        <i class="fi-arrow-down"></i>
+                    </a>
+                </div>
+
+                <h3 class="small-11 medium-11 large-11 columns">
+                    <a href="#" title="#">
+                        un titre
+                    </a>
+                </h3>
+            </li>
+            <li class="row pyddit-post">
+                <div class="small-1 medium-1 large-1 columns pyddit-vote-cmds">
+                    <a class="pyddit-vote-cmd pyddit-vote-up" href="#" title="">
+                        <i class="fi-arrow-up"></i>
+                    </a>
+                    <strong class="pyddit-score">
+                        1200
+                    </strong>
+                    <a class="pyddit-vote-cmd pyddit-vote-down" href="#" title="">
+                        <i class="fi-arrow-down"></i>
+                    </a>
+                </div>
+
+                <h3 class="small-11 medium-11 large-11 columns">
+                    <a href="#" title="#">
+                        un titre
+                    </a>
+                </h3>
+            </li>
+        </ul>
+
+        <ul class="pyddit-posts" tal:condition="posts">
+            <li class="pyddit-post" tal:repeat="post posts">
+                <a class="pyddit-vote-up" href="#" title="">
+                    <i class="fi-arrow-up"></i>
+                </a>
+                <a class="pyddit-vote-down" href="#" title="">
+                    <i class="fi-arrow-down"></i>
+                </a>
+                <h5>
+                    <a href="${post.hash_url}" title="${post.title}">
+                        ${post.title}
+                    </a>
+                </h5>
+            </li>
+        </ul>
+
+    </div>
+</metal:main>
