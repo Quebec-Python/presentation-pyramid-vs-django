@@ -1,10 +1,14 @@
 Chameleon==2.13-1
 Mako==0.9.0
 MarkupSafe==0.18
+MySQL-python==1.2.4
 PasteDeploy==1.5.0
 Pygments==1.6
-mysql-python==1.2.4
 SQLAlchemy==0.8.3
+SQLAlchemy-Utils==0.20.0
+WTForms==1.0.5
+WTForms-Alchemy==0.8.5
+WTForms-Components==0.8.0
 WebOb==1.2.3
 alembic==0.6.0
 argparse==1.2.1
@@ -14,6 +18,7 @@ pyramid-debugtoolbar==1.0.9
 pyramid-mako==0.3.1
 pyramid-tm==0.7
 repoze.lru==0.6
+six==1.4.1
 transaction==1.4.1
 translationstring==1.1
 venusian==1.0a8
