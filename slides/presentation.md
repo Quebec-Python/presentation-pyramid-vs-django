@@ -61,7 +61,7 @@
 
 ---
 
-## Démarrage sous Pyramid
+## Démarrage de projet sous Pyramid
 
     !bash
     $ pcreate -s starter pyddit
@@ -73,9 +73,11 @@ pour installer SQLAlchemy dès le départ:
 
 ---
 
-## Démarrage sous Django
+## Démarrage de projet sous Django
 
-    TODO
+    !bash
+    $ python manage.py startproject pyddit
+    $ python manage.py startapp pyddit_app
 
 ---
 
@@ -100,7 +102,18 @@ pour installer SQLAlchemy dès le départ:
 
 ## Models sous Django
 
-    TODO: django orm
+    !python
+    from django.db import models
+
+    class Post(models.Model):
+        title = models.CharField(
+            max_length=250, null=False
+        )
+        hash_url = models.CharField(
+            max_length=255, db_index=True
+        )
+        url = models.URLField()
+        votes = models.IntegerField(default=0)
 
 ---
 
@@ -130,7 +143,21 @@ Upgrader/Downgrader:
 
 ## Migration sous Django / South
 
-    TODO: South
+Autogénération de nos models en début de projet:
+
+    !bash
+    $ python manage.py syncdb
+    $ python manage.py schemamigration pyddit_app --initial
+    $ python manage.py migrate pyddit_app
+
+Création d'une nouvelle migration:
+
+    !bash
+    $ python manage.py schemamigration southtut --auto
+
+Upgrader/Downgrader:
+
+    TODO
 
 ---
 
