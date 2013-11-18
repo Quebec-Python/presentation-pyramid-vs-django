@@ -1,0 +1,10 @@
+<metal:main use-macro="load: base.pt">
+    <div metal:fill-slot="content">
+        <div class="row">
+            <div class="large-12 columns">
+                <h3>${post.title}</h3>
+                <a href="${post.url}" title="${post.title}">${post.url}</a>
+            </div>
+        </div>
+    </div>
+</metal:main>
