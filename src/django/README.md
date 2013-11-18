@@ -11,15 +11,11 @@ Chacune des commandes suivantes supposent que vous vous trouviez:
     $ source venv/bin/activate
     $ pip install -r requirements.txt
 
-## 2. Installation du projet *pyddit*
+## 2. Initialisation de la base de données
 
-    TODO
+    $ python manage.py migrate pyddit_app
 
-## 3. Initialisation de la base de données
-
-    TODO
-
-## 4. Démarrer le serveur de développement
+## 3. Démarrer le serveur de développement
 
     !bash
     $ cd pyddit
