@@ -34,6 +34,10 @@
 
 ---
 
+<img src="static/img/streetfighter.jpg" style="width:auto; display:block;">
+
+---
+
 # Round 1: la procédure d'installation
 
 ---
@@ -44,9 +48,6 @@
     $ virtualenv venv
     $ source venv/bin/activate
     $ pip install pyramid
-
-
----
 
 ## Installation de Django
 
@@ -70,8 +71,6 @@ pour installer SQLAlchemy dès le départ:
 
     !bash
     $ pcreate -s alchemy pyddit
-
----
 
 ## Démarrage de projet sous Django
 
@@ -157,7 +156,8 @@ Création d'une nouvelle migration:
 
 Upgrader/Downgrader:
 
-    TODO
+    !bash
+    # Je ne le trouve pas dans la documentation !
 
 ---
 
@@ -170,11 +170,10 @@ Upgrader/Downgrader:
     !bash
     $ pserver development.ini
 
----
-
 ## Serveur de dév. sous Django
 
-    TODO
+    !bash
+    $ python manage.py runserver 0.0.0.0:8080
 
 ---
 
@@ -195,8 +194,10 @@ pyddit/__init__.py:
         config.add_static_view(
             'static', 'static', cache_max_age=3600
         )
-        # la page d'accueil
         config.add_route('home', '/')
+        config.add_route(
+            'vote_up', '/vote_up/{hash_url}'
+        )
         config.scan()
         return config.make_wsgi_app()
 
@@ -204,7 +205,19 @@ pyddit/__init__.py:
 
 ## Routing sous Django
 
-    TODO
+pyddit/urls.py:
+
+    !python
+    from django.conf.urls import patterns, include, url
+
+    urlpatterns = patterns('pyddit_app.views',
+        # url(r'^admin/', include(admin.site.urls)),
+        url(r'^$', 'home', name="home"),
+        url(r'^vote_up/(?P<hash_url>.+)$', 'vote_up', name="vote_up"),
+        url(r'^vote_down/(?P<hash_url>.+)$', 'vote_down', name="vote_down"),
+        url(r'^add_post$', 'add_post', name="add_post"),
+        url(r'^post/(?P<hash_url>.+)$', 'get_post', name="get_post"),
+    )
 
 ---
 
@@ -217,19 +230,32 @@ pyddit/__init__.py:
     !python
     from pyramid.response import Response
     from pyramid.view import view_config
+    from .models import DBSession, Post
 
     @view_config(
         route_name='home',
         renderer='templates/index.pt'
     )
     def home(request):
-        return Response("home !")
+        posts = DBSession.query(Post).order_by(
+            "votes DESC"
+        )
+        return {'posts': posts, "hide_add_button": False}
 
 ---
 
 ## Views sous Django
 
-    TODO
+    !python
+    from django.shortcuts import render, redirect
+    from pyddit_app.models import Post
+
+    def home(request):
+        context = {
+            'hide_add_button': False,
+            "posts": Post.objects.all().order_by("-votes")
+        }
+        return render(request, 'index.html', context)
 
 ---
 
@@ -275,7 +301,37 @@ Template héritant de base.pt:
 
 ## Templates sous Django
 
-    TODO
+Template de base:
+
+    !html
+    <!DOCTYPE html>
+    <html>
+        <head></head>
+        <body>
+            {% block content %}
+            {% endblock %}
+        </body>
+    </html>
+
+---
+
+## Templates sous Django partie 2
+
+Template héritant de base.html:
+
+    !html
+    {% extends "base.html" %}
+    {% block content %}
+        du contenu !
+    {% endblock %}
+
+---
+
+# Ce que je n'ai pas couvert
+
+* Mise en production (WSGI)
+* Protection contre le *Cross-site request forgery*
+* Déploiement des fichiers statiques
 
 ---
 
