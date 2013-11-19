@@ -332,6 +332,7 @@ Template héritant de base.html:
 * Mise en production (WSGI)
 * Protection contre le *Cross-site request forgery*
 * Déploiement des fichiers statiques
+* Unit tests
 
 ---
 
