@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if not posts %}
+        <p>
+            Il n'y a pas encore de liens...
+        </p>
+    {% else %}
+        <ul class="pyddit-posts">
+            {% for post in posts %}
+                <li class="row pyddit-post">
+                    <div class="small-12 medium-2 large-2 columns pyddit-vote-cmds">
+                        <a class="pyddit-vote-cmd pyddit-vote-up" href="{% url 'vote_up' post.hash_url %}" title="">
+                            <i class="fi-arrow-up"></i>
+                        </a>
+                        <strong class="pyddit-score">
+                            {{post.votes}}
+                        </strong>
+                        <a class="pyddit-vote-cmd pyddit-vote-down" href="{% url 'vote_down' post.hash_url %}" title="">
+                            <i class="fi-arrow-down"></i>
+                        </a>
+                    </div>
+
+                    <h3 class="small-12 medium-10 large-10 columns">
+                        <a href="{% url 'get_post' post.hash_url %}" title="{{post.title}}">
+                            {{post.title}}
+                        </a>
+                    </h3>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
