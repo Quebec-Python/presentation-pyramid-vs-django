@@ -13,6 +13,7 @@ Chacune des commandes suivantes supposent que vous vous trouviez:
 
 ## 2. Initialisation de la base de données
 
+    $ python manage.py syncdb
     $ python manage.py migrate pyddit_app
 
 ## 3. Démarrer le serveur de développement
